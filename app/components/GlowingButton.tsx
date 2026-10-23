@@ -9,6 +9,7 @@ interface GlowingButtonProps {
   onClick?: () => void;
   className?: string;
   size?: "sm" | "md" | "lg";
+  variant?: "dark" | "outline" | "gold" | "white";
 }
 
 export default function GlowingButton({
@@ -18,17 +19,26 @@ export default function GlowingButton({
   onClick,
   className = "",
   size = "md",
+  variant = "dark",
 }: GlowingButtonProps) {
   const sizeClasses = {
-    sm: "px-5 py-3 text-[10px] tracking-[0.13em]",
-    md: "px-6 py-3.5 text-xs tracking-[0.14em]",
-    lg: "px-7 py-4 text-xs tracking-[0.14em]",
+    sm: "px-4 py-2.5 text-xs font-semibold tracking-wider",
+    md: "px-6 py-3.5 text-xs font-bold tracking-wider",
+    lg: "px-7 py-4 text-xs sm:text-sm font-bold tracking-wider",
   }[size];
 
-  const classes =
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-brand-300 bg-brand-300 font-semibold text-brand-950 transition-colors duration-200 hover:border-brand-200 hover:bg-brand-200 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand-700 " +
-    "select-none text-center " +
+  const variantClasses = {
+    dark: "bg-[#121417] text-[#FAF7F2] border border-[#2B303A] hover:bg-[#1E232B] hover:border-[#B89047]/60 shadow-[0_4px_14px_rgba(0,0,0,0.25)] hover:shadow-[0_6px_20px_rgba(184,144,71,0.2)]",
+    outline: "bg-white/80 backdrop-blur-xs text-[#121417] border border-[#DCD3C5] hover:border-[#B89047] hover:bg-[#FAF7F2] shadow-xs",
+    gold: "bg-[#B89047] text-[#121417] border border-[#CCA554] hover:bg-[#CCA554] shadow-[0_4px_14px_rgba(184,144,71,0.3)] hover:shadow-[0_6px_20px_rgba(184,144,71,0.4)]",
+    white: "bg-white text-[#121417] border border-[#E8E1D5] hover:bg-[#FAF7F2] hover:border-[#B89047] shadow-sm",
+  }[variant];
+
+  const baseClasses =
+    "inline-flex items-center justify-center gap-2.5 rounded-lg select-none text-center transition-all duration-200 active:scale-[0.98] cursor-pointer " +
     sizeClasses +
+    " " +
+    variantClasses +
     " " +
     className;
 
@@ -38,7 +48,7 @@ export default function GlowingButton({
         href={href}
         target={target}
         rel={target === "_blank" ? "noopener noreferrer" : undefined}
-        className={classes}
+        className={baseClasses}
       >
         {children}
       </a>
@@ -46,7 +56,7 @@ export default function GlowingButton({
   }
 
   return (
-    <button type="button" onClick={onClick} className={classes}>
+    <button type="button" onClick={onClick} className={baseClasses}>
       {children}
     </button>
   );

@@ -1,106 +1,137 @@
 @import "tailwindcss";
 
-/* Tailwind CSS 4: configuração do tema em CSS.
-   Logo: dourado #e0c090, champagne #f0d0a0 e luz #fff0d0.
-   Arte de apresentação: vinho #501020 e bege #d0c0b0.
-   Amostras quantizadas em passos de 16; demais tons derivados para contraste. */
+@theme inline {
+  --font-serif: var(--font-display-face), "Cormorant Garamond", Georgia, serif;
+  --font-display: var(--font-display-face), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-body), "Plus Jakarta Sans", system-ui, sans-serif;
+
+  --color-canvas: #FAF7F2;
+  --color-canvas-subtle: #F4EFE6;
+  --color-canvas-card: #FFFFFF;
+  --color-border-soft: #E8E1D5;
+  --color-border-subtle: #F0EAE1;
+
+  --color-ink-primary: #121417;
+  --color-ink-secondary: #4A453E;
+  --color-ink-muted: #7A7369;
+
+  --color-gold-100: #F6EEDC;
+  --color-gold-200: #EADCB8;
+  --color-gold-300: #DCBF82;
+  --color-gold-400: #CCA554;
+  --color-gold-500: #B89047;
+  --color-gold-600: #9C7733;
+  --color-gold-700: #7A5B23;
+
+  --color-dark-surface: #0E1217;
+  --color-dark-surface-elevated: #151B22;
+  --color-dark-card: #182029;
+}
+
 :root {
   color-scheme: light;
-  --brand-ink: #321b23;
-  --brand-ink-soft: #6c555b;
-  --brand-paper: #faf7f0;
+  --canvas: #FAF7F2;
+  --canvas-subtle: #F4EFE6;
+  --ink: #121417;
+  --ink-secondary: #4A453E;
+  --ink-muted: #7A7369;
+  --gold: #B89047;
+  --gold-light: #DFBD76;
+  --gold-dark: #8C6D32;
+  --gold-surface: #F9F4EB;
+  --border-soft: #E8E1D5;
+  --dark-surface: #0E1217;
 }
-@theme inline {
-  --font-display: var(--font-display-face), "Cormorant Garamond", Georgia, serif;
-  --font-sans: var(--font-body), "Lato", system-ui, sans-serif;
-  --color-ink: #321b23;
-  --color-ink-soft: #6c555b;
-  --color-paper: #ffffff;
-  --color-ivory: #faf7f0;
-  --color-linen: #e5d9c9;
-  --color-brand-50: #f3ede3;
-  --color-brand-100: #eee0cf;
-  --color-brand-200: #fff0d0;
-  --color-brand-300: #e0c090;
-  --color-brand-400: #d0b080;
-  --color-brand-500: #b09060;
-  --color-brand-600: #836337;
-  --color-brand-700: #731d35;
-  --color-brand-800: #64162c;
-  --color-brand-900: #420d1b;
-  --color-brand-950: #501020;
-  --shadow-card: 0 18px 48px rgb(50 27 35 / 18%);
-}
-html { scroll-padding-top: 2rem; }
-img { max-width: 100%; }
-body {
-  background: var(--brand-paper);
-  color: var(--brand-ink);
-  font-family: var(--font-body), "Lato", system-ui, sans-serif;
-  caret-color: var(--color-brand-700);
-}
-::selection { background: var(--color-brand-300); color: var(--color-brand-950); }
-h1, h2 { text-wrap: balance; }
-.font-display { font-weight: 400; letter-spacing: -0.025em; }
-.nav-link {
-  position: relative;
-  padding-block: 0.75rem;
-  color: var(--color-brand-100);
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: color 180ms ease;
-}
-.nav-link::after {
-  position: absolute;
-  inset: auto 0 0;
-  height: 1px;
-  background: var(--color-brand-300);
-  content: "";
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 180ms ease;
-}
-.nav-link:hover { color: var(--color-brand-300); }
-.nav-link:hover::after { transform: scaleX(1); }
-.footer-link { transition: color 180ms ease; }
-.footer-link:hover { color: var(--color-brand-300); }
-:focus-visible { outline: 2px solid var(--color-brand-600); outline-offset: 4px; }
-:is(.brand-header, .brand-hero, .brand-footer, .bg-brand-950) :focus-visible { outline-color: var(--color-brand-200); }
-.brand-header #mobile-navigation :focus-visible { outline-color: var(--color-brand-800); }
-.brand-hero .text-ink-soft { color: var(--color-brand-100); }
-.brand-hero .text-ink { color: var(--color-ivory); }
-.brand-hero .text-brand-700 { color: var(--color-brand-300); }
-.brand-hero .border-ink\/10 { border-color: rgb(224 192 144 / 25%); }
 
-::-webkit-scrollbar { width: 9px; }
-::-webkit-scrollbar-track { background: var(--color-brand-50); }
-::-webkit-scrollbar-thumb {
-  border: 2px solid var(--color-brand-50);
-  border-radius: 999px;
-  background: var(--color-brand-400);
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-brand-700); }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+
+body {
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-body), "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #EADCB8;
+  color: #121417;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8CEBE;
+  border-radius: 999px;
+  border: 2px solid #FAF7F2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B89047;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+.font-display {
+  font-family: var(--font-display-face), "Cormorant Garamond", Georgia, serif;
+}
+
+/* Luxury card classes */
+.luxury-card {
+  background: #FFFFFF;
+  border: 1px solid #E8E1D5;
+  box-shadow: 0 10px 30px -10px rgba(18, 20, 23, 0.04), 0 1px 3px rgba(18, 20, 23, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-card:hover {
+  border-color: #CCA554;
+  box-shadow: 0 20px 40px -12px rgba(184, 144, 71, 0.12), 0 2px 6px rgba(18, 20, 23, 0.04);
+  transform: translateY(-2px);
+}
+
+.luxury-dark-card {
+  background: #121720;
+  border: 1px solid rgba(184, 144, 71, 0.22);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.45);
+}
+
+@keyframes ripple-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
 }
 
-.brand-footer .text-ink-soft { color: var(--color-brand-100); }
-.brand-footer .text-brand-700 { color: var(--color-brand-300); }
-.brand-footer .border-ink\/15 { border-color: rgb(224 192 144 / 25%); }
-.hero-signature {
-  border: 1px solid rgb(224 192 144 / 40%);
-  animation: signature-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+.whatsapp-pulse {
+  animation: ripple-pulse 2s infinite;
 }
-@keyframes signature-reveal {
-  from { clip-path: inset(0 0 25% 0); }
-  to { clip-path: inset(0); }
+
+@keyframes gold-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hero-signature { animation: none; }
+
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(184,144,71,0.08) 0%, rgba(184,144,71,0.25) 50%, rgba(184,144,71,0.08) 100%);
+  background-size: 200% 100%;
+  animation: gold-shimmer 4s infinite linear;
 }
